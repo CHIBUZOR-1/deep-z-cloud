@@ -59,7 +59,7 @@ app.use((req, res, next) => {
   })(req, res, next);
 });
 
-const PORT = process.env.HOSTPORT;
+const PORT = process.env.PORT;
 
 connectDB();
 
