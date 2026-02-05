@@ -47,7 +47,7 @@ app.use((req, res, next) => {
         scriptSrc: ["'self'", `'nonce-${res.locals.nonce}'`, "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "https://apis.google.com", "https://www.gstatic.com", "https://www.googleapis.com"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
         imgSrc: ["'self'", "data:", "blob:", "https://res.cloudinary.com", "https://cdn.jsdelivr.net", "https://as2.ftcdn.net", "https://th.bing.com"],
-        connectSrc: ["'self'", process.env.API_URL, "https://res.cloudinary.com", "https://identitytoolkit.googleapis.com", "https://www.googleapis.com"],
+        connectSrc: ["'self'", process.env.API_URL, process.env.ORIGIN, "https://res.cloudinary.com", "https://identitytoolkit.googleapis.com", "https://www.googleapis.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com"],
         objectSrc: ["'none'"],
         mediaSrc: ["'self'", "blob:", "https://res.cloudinary.com"],
