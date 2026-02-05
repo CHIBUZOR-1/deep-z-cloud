@@ -59,7 +59,7 @@ app.use((req, res, next) => {
   })(req, res, next);
 });
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 connectDB();
 
@@ -67,11 +67,7 @@ connectDB();
 app.use('/api/users', userRouter);
 app.use('/api/blogs', blogRouter);
 app.use('/api/comments', commentRouter);
-app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.get('*', (req, res)=> {
-    res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'))
-})
 app.get('/', (req, res) => {
     res.send("Welcome to ZONEY");
 });
