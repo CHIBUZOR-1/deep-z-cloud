@@ -54,8 +54,7 @@ const SignUp = ({change}) => {
     const provider = new GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account'})
     try {
-      const oauthResults = await signInWithPopup(auth, provider)
-      console.log(oauthResults)
+      const oauthResults = await signInWithPopup(auth, provider);
       const userDetails = { 
         firstname: oauthResults.user.displayName.split(' ')[0], 
         lastname: oauthResults.user.displayName.split(' ').slice(-1).join(' '), 

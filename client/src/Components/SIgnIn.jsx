@@ -30,7 +30,6 @@ const SIgnIn = () => {
           if(data.success) {
               toast.success(data.message);
               dispatch(setUser(data.details));
-              console.log(details);
               setLoading(false);
               navigate('/');
           } 
@@ -45,8 +44,7 @@ const SIgnIn = () => {
         const provider = new GoogleAuthProvider();
         provider.setCustomParameters({ prompt: 'select_account'})
         try {
-          const oauthResults = await signInWithPopup(auth, provider)
-          console.log(oauthResults)
+          const oauthResults = await signInWithPopup(auth, provider);
           const userData = { 
             email: oauthResults.user.email,
             googleId: oauthResults.user.uid
