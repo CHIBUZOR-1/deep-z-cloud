@@ -22,23 +22,12 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-console.log("ORIGIN:", process.env.ORIGIN);
-const allowedOrigin = process.env.ORIGIN;
-
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || origin === allowedOrigin) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+//console.log("ORIGIN:", process.env.ORIGIN);
+app.use(cors({
+  origin: true, // trust CloudFront
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-};
+}));
 
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
 
 
 app.use(morgan('dev'));
@@ -59,7 +48,7 @@ app.use((req, res, next) => {
         scriptSrc: ["'self'", `'nonce-${res.locals.nonce}'`, "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "https://apis.google.com", "https://www.gstatic.com", "https://www.googleapis.com"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net"],
         imgSrc: ["'self'", "data:", "blob:", "https://res.cloudinary.com", "https://cdn.jsdelivr.net", "https://as2.ftcdn.net", "https://th.bing.com"],
-        connectSrc: ["'self'", process.env.API_URL, process.env.ORIGIN, "https://res.cloudinary.com", "https://identitytoolkit.googleapis.com", "https://www.googleapis.com"],
+        connectSrc: ["'self'", "https://res.cloudinary.com", "https://identitytoolkit.googleapis.com", "https://www.googleapis.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com"],
         objectSrc: ["'none'"],
         mediaSrc: ["'self'", "blob:", "https://res.cloudinary.com"],

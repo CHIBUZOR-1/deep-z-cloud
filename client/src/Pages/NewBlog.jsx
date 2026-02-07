@@ -29,7 +29,7 @@ const NewBlog = () => {
     const formData = new FormData(); 
     formData.append('file', file); 
     try { 
-        const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/blogs/upload-post-file`, formData); 
+        const response = await axios.post(`/api/blogs/upload-post-file`, formData); 
         return response.data; 
     } catch (error) { 
         console.error('Error uploading file:', error); 

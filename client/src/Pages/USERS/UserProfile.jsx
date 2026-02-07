@@ -26,7 +26,7 @@ const UserProfile = () => {
     const formData = new FormData();
     formData.append('file', file);
     try {
-        const { data }= await axios.post(`${import.meta.env.VITE_API_URL}/api/users/uploadProfilePhoto`, formData);
+        const { data }= await axios.post(`/api/users/uploadProfilePhoto`, formData);
         return data.filePath;
     } catch (error) {
         console.error('Error uploading file:', error); 
@@ -50,7 +50,7 @@ const UserProfile = () => {
   }
   const handleUpdate = async()=> {
     setLoad1(true)
-    const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/api/users/update-profile`, newInfo)
+    const {data} = await axios.put(`/api/users/update-profile`, newInfo)
     if(data.success) {
       dispatch(updateProfilez(data?.user))
       setLoad1(false)
@@ -67,7 +67,7 @@ const UserProfile = () => {
     if(imageUrl) {
       const newPhoto = { image: imageUrl };
       try {
-        const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/newProfilePhoto`, newPhoto);
+        const {data} = await axios.post(`/api/users/newProfilePhoto`, newPhoto);
         if(data.success) {
           setIsModal(false)
           dispatch(updateProfilePic(imageUrl));

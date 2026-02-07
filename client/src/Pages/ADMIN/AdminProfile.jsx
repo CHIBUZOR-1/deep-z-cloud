@@ -28,7 +28,7 @@ const AdminProfile = ({toggleView}) => {
     const formData = new FormData();
     formData.append('file', file);
     try {
-        const { data }= await axios.post(`${import.meta.env.VITE_API_URL}/api/users/uploadProfilePhoto`, formData);
+        const { data }= await axios.post(`/api/users/uploadProfilePhoto`, formData);
         return data.filePath;
     } catch (error) {
         console.error('Error uploading file:', error); 
@@ -52,7 +52,7 @@ const AdminProfile = ({toggleView}) => {
   }
   const handleUpdate1 = async()=> {
     setLoad(true)
-    const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/api/users/update-profile`, newInfo)
+    const {data} = await axios.put(`/api/users/update-profile`, newInfo)
     if(data.success) {
       dispatch(updateProfilez(data?.user))
       setLoad(false)
@@ -69,7 +69,7 @@ const AdminProfile = ({toggleView}) => {
     if(imageUrl) {
       const newPhoto = { image: imageUrl };
       try {
-        const {data} = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/newProfilePhoto`, newPhoto);
+        const {data} = await axios.post(`/api/users/newProfilePhoto`, newPhoto);
         if(data.success) {
           setIsModal(false)
           dispatch(updateProfilePic(imageUrl));

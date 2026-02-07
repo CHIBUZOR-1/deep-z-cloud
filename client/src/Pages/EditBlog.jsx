@@ -20,7 +20,7 @@ const EditBlog = () => {
       getById();
     }, [])
     const getById = async() => {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs/blog-b/${id}`);
+      const { data } = await axios.get(`/api/blogs/blog-b/${id}`);
       if(data.success) {
         setB(data?.blog)
         setNewBlog({
@@ -51,7 +51,7 @@ const EditBlog = () => {
       if (newBlog.newMed) {
         formData.append('file', newBlog.newMed);
       }
-      const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/api/blogs/edit-blog/${b?._id}`, formData)
+      const { data } = await axios.put(`/api/blogs/edit-blog/${b?._id}`, formData)
       if(data.ok) {
         
         setB(data?.blogz)

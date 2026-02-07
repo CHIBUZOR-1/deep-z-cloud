@@ -32,7 +32,7 @@ const DashBoardPanel = ({toggleView}) => {
 
    const getAllUsers = async()=> {
     setUload(true);
-    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/all-users`);
+    const { data } = await axios.get(`/api/users/all-users`);
     if(data?.success) {
       setAllUsers(data.users)
       setTu(data.totalUsers)
@@ -42,7 +42,7 @@ const DashBoardPanel = ({toggleView}) => {
   }
   const getAllBlogs = async()=> {
     setBload(true)
-    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs/all-blogs?limit=5`);
+    const { data } = await axios.get(`/api/blogs/all-blogs?limit=5`);
     if(data.success) {
       setAllBlogz(data?.blogs);
       setTb(data.totalBlogs);
@@ -52,7 +52,7 @@ const DashBoardPanel = ({toggleView}) => {
   }
   const getAllComments = async()=> {
     setCload(true)
-    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/comments/get-all`);
+    const { data } = await axios.get(`/api/comments/get-all`);
     if(data.ok) {
       setAllComments(data.comments)
       setTc(data.totalComments);

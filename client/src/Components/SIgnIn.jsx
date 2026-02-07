@@ -26,7 +26,7 @@ const SIgnIn = () => {
         try {
           e.preventDefault();
           setLoading(true);
-          const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/signIn`, info);
+          const { data } = await axios.post(`/api/users/signIn`, info);
           if(data.success) {
               toast.success(data.message);
               dispatch(setUser(data.details));
@@ -51,7 +51,7 @@ const SIgnIn = () => {
             email: oauthResults.user.email,
             googleId: oauthResults.user.uid
           };
-          const{ data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/googleAuthLogin`, userData);
+          const{ data } = await axios.post(`/api/users/googleAuthLogin`, userData);
           if(data.success) {
             toast.success(data.message);
             dispatch(setUser(data.details));

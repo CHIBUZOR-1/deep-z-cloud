@@ -23,7 +23,7 @@ const AllComments = ({toggleView}) => {
 
   const getAllcoms = async () => {
     setLoady(true)
-    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/comments/get-all`);
+    const { data } = await axios.get(`/api/comments/get-all`);
     if(data.ok) {
       setAllComs(data.comments);
       setLoady(false);
@@ -36,7 +36,7 @@ const AllComments = ({toggleView}) => {
     setMl(true)
     const startIndex = allComs.length;
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/comments/get-all?startIndex=${startIndex}`);
+      const { data } = await axios.get(`/api/comments/get-all?startIndex=${startIndex}`);
       if(data.ok) {
         setAllComs(prev =>[...prev, ...data.comments]);
         if(data.comments.length < 9) {
@@ -56,7 +56,7 @@ const AllComments = ({toggleView}) => {
   }
   const deleteComments = async() => {
     setLoad(true)
-    const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/api/comments/delete-comment/${comment?._id}`);
+    const { data } = await axios.delete(`/api/comments/delete-comment/${comment?._id}`);
     if(data.ok) {
       setAllComs(allComs.filter(com=> com?._id !== comment?._id));
       setComment(null);

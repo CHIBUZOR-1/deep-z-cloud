@@ -35,7 +35,7 @@ const Search = () => {
     const getAllBlogs = async()=> {
       setLoad(true)
       const searchQuery = urlParams.toString();
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs/all-blogs?${searchQuery}`);
+      const { data } = await axios.get(`/api/blogs/all-blogs?${searchQuery}`);
       if(data.success) {
         setBlogs(data?.blogs);
         setLoad(false)
@@ -87,7 +87,7 @@ const Search = () => {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set('startIndex', startIndex);
     const searchQuery = urlParams.toString();
-    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs/all-blogs?${searchQuery}`);
+    const { data } = await axios.get(`/api/blogs/all-blogs?${searchQuery}`);
       if(data.success) {
         setBlogs(prev =>[...prev, ...data.blogs]);
         if(data?.blogs.length < 9) {

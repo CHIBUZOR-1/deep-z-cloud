@@ -24,7 +24,7 @@ const AllBlogz = ({toggleView}) => {
   const getAllBlogs = async()=> {
     setLoad(true);
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs/all-blogs`);
+      const { data } = await axios.get(`/api/blogs/all-blogs`);
       if(data.success) {
         setAllBlogz(data?.blogs);
         setLoad(false)
@@ -44,7 +44,7 @@ const AllBlogz = ({toggleView}) => {
     setMl(true)
     const startIndex = allBlogz.length;
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs/all-blogs?startIndex=${startIndex}`);
+      const { data } = await axios.get(`/api/blogs/all-blogs?startIndex=${startIndex}`);
       if(data.ok) {
         setAllBlogz(prev =>[...prev, ...data.blogs]);
         if(data.blogs.length < 9) {
@@ -64,7 +64,7 @@ const AllBlogz = ({toggleView}) => {
     setB(null)
   }
   const deleteBlog = async () => {
-    const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/api/blogs/delete-blog/${b?._id}`)
+    const { data } = await axios.delete(`/api/blogs/delete-blog/${b?._id}`)
     if(data.ok) {
       setShow(false);
       toast.success(data?.msg)

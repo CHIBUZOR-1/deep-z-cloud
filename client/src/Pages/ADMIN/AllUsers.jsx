@@ -31,7 +31,7 @@ const AllUsers = ({toggleView}) => {
 
   const getAll = async()=> {
     setLoading(true);
-    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/all-users`);
+    const { data } = await axios.get(`/api/users/all-users`);
     if(data?.success) {
       setAllUsers(data.users)
       setLoading(false);
@@ -44,7 +44,7 @@ const AllUsers = ({toggleView}) => {
     setMl(true)
     const startIndex = allUsers.length;
     try {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/all-users?startIndex=${startIndex}`);
+      const { data } = await axios.get(`/api/users/all-users?startIndex=${startIndex}`);
       if(data.success) {
         setAllUsers(prev =>[...prev, ...data.users]);
         if(data.users.length < 9) {
@@ -71,7 +71,7 @@ const AllUsers = ({toggleView}) => {
   const changeUserRole = async (e) => {
     e.preventDefault()
     setLoad(true)
-    const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/api/users/update_role/${user._id}`, { newRole });
+    const {data} = await axios.put(`/api/users/update_role/${user._id}`, { newRole });
     if(data?.ok) {
       toast.success(data.message)
       setUser(null);
@@ -83,7 +83,7 @@ const AllUsers = ({toggleView}) => {
   }
 
   const handleDeleteUser = async() => {
-    const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/api/users/delete-user/${user._id}`);
+    const { data } = await axios.delete(`/api/users/delete-user/${user._id}`);
     if(data.ok) {
       setAllUsers(allUsers.filter(users => users._id !== user?._id))
       setUser(null);

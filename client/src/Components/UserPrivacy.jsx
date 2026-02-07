@@ -13,7 +13,7 @@ const UserPrivacy = () => {
     useEffect(() => {
         const passCheck = async () => {
             try {
-              const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/user-pass`);
+              const { data } = await axios.get(`/api/users/user-pass`);
               setOk(data.ok);
             } catch (error) {
               setOk(false);

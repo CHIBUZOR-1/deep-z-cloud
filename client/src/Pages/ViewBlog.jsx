@@ -10,9 +10,9 @@ const ViewBlog = () => {
   const { id } = useParams();
     useEffect(()=> {
       getById();
-    }, [])
+    }, [id])
     const getById = async() => {
-      const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs/blog-b/${id}`);
+      const { data } = await axios.get(`/api/blogs/blog-b/${id}`);
       if(data.success) {
         setView(data.blog);
       }

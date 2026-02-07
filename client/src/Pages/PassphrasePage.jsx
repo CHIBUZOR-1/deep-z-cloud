@@ -18,7 +18,7 @@ const PassphrasePage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoad(true)
-        const {data} =await axios.post(`${import.meta.env.VITE_API_URL}/api/users/new-ph`, dataz)
+        const {data} =await axios.post(`/api/users/new-ph`, dataz)
         if(data.ok) {
             toast.success(data.msg);
             setDataz({

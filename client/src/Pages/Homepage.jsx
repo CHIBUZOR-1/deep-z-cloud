@@ -17,7 +17,7 @@ const Homepage = () => {
     }, []);
   const getAllBlogs = async()=> {
     setLoad(true)
-    const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/blogs/all-blogs?limit=6`);
+    const { data } = await axios.get(`/api/blogs/all-blogs?limit=6`);
     if(data.success) {
       setAllBlogz(data?.blogs);
       setLoad(false)

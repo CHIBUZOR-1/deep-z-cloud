@@ -25,7 +25,7 @@ const SignUp = ({change}) => {
     e.preventDefault();
     setLoading(true)
       if(info.confirmPassword === info.password) {
-        const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/signUp`, info);
+        const { data } = await axios.post(`/api/users/signUp`, info);
         if(data.success) {
           toast.success(data.message);
           setInfo({
@@ -63,7 +63,7 @@ const SignUp = ({change}) => {
         email: oauthResults.user.email,
         googleId: oauthResults.user.uid
       };
-      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/googleAuth`, userDetails);
+      const { data } = await axios.post(`/api/users/googleAuth`, userDetails);
       if(data.success) {
         toast.success(data.message);
         change('Sign-In');

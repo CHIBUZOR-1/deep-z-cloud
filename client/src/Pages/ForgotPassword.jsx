@@ -23,7 +23,7 @@ const handleSubmit = async (e) => {
     setLoad(true)
     try {
       if(dataz.confirmNewPassword === dataz.newPassword) {
-        const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/reset-pw`, dataz)
+        const { data } = await axios.post(`/api/users/reset-pw`, dataz)
         if(data.ok) {
             toast.success(data.msg);
             setDataz({

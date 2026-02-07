@@ -27,7 +27,7 @@ const CommentsSection = ({ bId }) => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         setLoad(true)
-        const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/comments/create-comment`, {comt, bId});
+        const { data } = await axios.post(`/api/comments/create-comment`, {comt, bId});
         if(data.ok) {
             setComt('')
             setComs(prevComs=> [data?.popComment, ...prevComs])
@@ -49,20 +49,20 @@ const CommentsSection = ({ bId }) => {
     }
 
     const getBlogComments = async() => {
-        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/comments/getComments/${bId}`);
+        const { data } = await axios.get(`/api/comments/getComments/${bId}`);
         if(data.ok) {
             setComs(data?.comment)
         }
     }
     const likeUnlike = async(cId) => {
-        const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/comments/like/${cId._id}`);
+        const { data } = await axios.post(`/api/comments/like/${cId._id}`);
         if(data?.ok) {
             setComs(coms.map(com => (com._id === data?.updatedComment._id ? data?.updatedComment : com)));
         }
     }
 
     const handleEdit = async (cId) => {
-        const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/api/comments/edit-comment/${cId}`, { eComt });
+        const { data } = await axios.put(`/api/comments/edit-comment/${cId}`, { eComt });
         if(data?.ok) {
             setEcomt('');
             setIsEditing(null);
@@ -71,7 +71,7 @@ const CommentsSection = ({ bId }) => {
     }
 
     const deleteComment = async()=> {
-        const { data } = await axios.delete(`${import.meta.env.VITE_API_URL}/api/comments/delete-comment/${dId?._id}`);
+        const { data } = await axios.delete(`/api/comments/delete-comment/${dId?._id}`);
         if(data.ok) {
             setComs(coms.filter(com => com?._id !== dId?._id));
             setIsOpen(false)

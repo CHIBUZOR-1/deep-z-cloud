@@ -28,7 +28,7 @@ const Navbar = () => {
     const dropdownRef1 = useRef(null); 
     const iconRef1 = useRef(null);
     const handleLogOut = async()=> {
-      const {data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/logout`);
+      const {data } = await axios.get(`/api/users/logout`);
       if(data.success) {
         toast.success(data.message);
         dispatch(logout())
